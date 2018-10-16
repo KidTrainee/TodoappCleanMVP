@@ -20,6 +20,8 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity android:name=".statistics.StatisticsActivity" />
+        <activity android:name=".AddEditTaskActivity" />
     </application>
 
 </manifest>

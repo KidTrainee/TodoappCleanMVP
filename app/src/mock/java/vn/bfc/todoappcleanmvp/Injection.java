@@ -8,6 +8,9 @@ import vn.bfc.todoappcleanmvp.data.source.local.TasksLocalDataSource;
 import vn.bfc.todoappcleanmvp.data.source.local.TodoDatabase;
 import vn.bfc.todoappcleanmvp.data.source.remote.TasksDataSource;
 import vn.bfc.todoappcleanmvp.data.source.remote.TasksRepository;
+import vn.bfc.todoappcleanmvp.tasks.domain.usecase.UCClearCompleteTasks;
+import vn.bfc.todoappcleanmvp.tasks.domain.usecase.UCCompleteTasks;
+import vn.bfc.todoappcleanmvp.tasks.domain.usecase.UCGetTasks;
 import vn.bfc.todoappcleanmvp.tasks.domain.usecase.UCActivateTask;
 import vn.bfc.todoappcleanmvp.util.AppExecutors;
 
@@ -29,8 +32,22 @@ public class Injection {
                         TodoDatabase.getInstance(context).taskDao()));
     }
 
-    public static UCActivateTask provideActivateTask(@NonNull Context context) {
+    public static UCActivateTask provideUCActivateTask(@NonNull Context context) {
         return new UCActivateTask(Injection.provideTasksRepository(context));
     }
 
+    public static Object provideUseCaseHandler() {
+        return null;
+    }
+
+    public static UCGetTasks provideUCGetTasks(Context ctx) {
+
+        return null;
+    }
+
+    public static UCCompleteTasks provideUCCompleteTasks(Context ctx) {
+    }
+
+    public static UCClearCompleteTasks provideUCClearCompleteTasks(Context ctx) {
+    }
 }

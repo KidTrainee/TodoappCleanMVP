@@ -6,8 +6,10 @@ import vn.bfc.todoappcleanmvp.BaseView;
 public interface TasksContract {
     interface View extends BaseView<Presenter> {
 
+        void setLoadingIndicator(boolean active);
     }
     interface Presenter extends BasePresenter {
 
+        void loadTasks(boolean forceUpdate);
     }
 }
