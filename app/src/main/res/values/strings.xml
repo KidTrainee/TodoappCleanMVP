@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">TodoappCleanMVP</string>
+    <string name="navigation_view_header_title">TO-DOs</string>
+    <string name="list_title">TO-DO List</string>
+    <string name="statistics_title">Statistics</string>
 </resources>

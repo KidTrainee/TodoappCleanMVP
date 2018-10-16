@@ -60,4 +60,16 @@ public class CacheDataSource {
         }
         mCacheIsDirty = false;
     }
+
+    public boolean isEmpty() {
+        return mCachedTasks.isEmpty();
+    }
+
+    public Task getTask(String id) {
+        if (mCachedTasks == null || mCachedTasks.isEmpty()) {
+            return null;
+        } else {
+            return mCachedTasks.get(id);
+        }
+    }
 }

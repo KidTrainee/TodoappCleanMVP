@@ -2,8 +2,6 @@ package vn.bfc.todoappcleanmvp.data.source.remote;
 
 import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import vn.bfc.todoappcleanmvp.data.source.CacheDataSource;
@@ -113,6 +111,30 @@ public class TasksRepository implements TasksDataSource {
         mTasksRemoteDataSource.deleteAllTasks();
         mTasksLocalDataSource.deleteAllTasks();
         mCachedDataSource.deleteAllTasks();
+    }
+
+    @Override
+    public void activateTask(@NonNull String taskId) {
+        checkNotNull(taskId);
+        activateTask(getTasksWithId(taskId));
+    }
+
+    @Override
+    public void activateTask(Task task) {
+        checkNotNull(task);
+        mTasksRemoteDataSource.activateTask(task);
+        mTasksLocalDataSource.activateTask(task);
+
+        Task activeTask = new Task(task.getTitle(), task.getDescription(), task.getId());
+
+        // Do in memory cache update to keep the app UI up-to-date
+        mCachedDataSource.saveTask(activeTask);
+    }
+
+
+    private Task getTasksWithId(String id) {
+        checkNotNull(id);
+        return mCachedDataSource.getTask(id);
     }
 
     private void getTasksFromRemoteDataSource(@NonNull final LoadTasksCallback callback) {

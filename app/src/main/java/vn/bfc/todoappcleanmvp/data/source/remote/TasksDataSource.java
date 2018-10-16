@@ -14,6 +14,10 @@ public interface TasksDataSource {
 
     void deleteAllTasks();
 
+    void activateTask(@NonNull String taskId);
+
+    void activateTask(Task task);
+
     interface LoadTasksCallback {
 
         void onTasksLoaded(List<Task> tasks);

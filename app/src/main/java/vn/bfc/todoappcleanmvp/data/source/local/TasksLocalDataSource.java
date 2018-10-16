@@ -8,6 +8,8 @@ import vn.bfc.todoappcleanmvp.data.source.remote.TasksDataSource;
 import vn.bfc.todoappcleanmvp.tasks.domain.model.Task;
 import vn.bfc.todoappcleanmvp.util.AppExecutors;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class TasksLocalDataSource implements TasksDataSource {
 
     private static volatile TasksLocalDataSource INSTANCE;
@@ -52,5 +54,28 @@ public class TasksLocalDataSource implements TasksDataSource {
                 }
             });
         };
+    }
+
+    @Override
+    public void saveTask(Task task) {
+        checkNotNull(task);
+        mAppExecutors.diskIO().execute(() -> mTasksDao.insertTask(task));
+    }
+
+    @Override
+    public void deleteAllTasks() {
+        mAppExecutors.diskIO().execute(() -> mTasksDao.deleteTasks());
+    }
+
+    @Override
+    public void activateTask(@NonNull String taskId) {
+        // Not required for the local data source because the
+        // {@link TasksRepository} handles converting from a {@code taskId}
+        // to a {@link task} using its cached data.
+    }
+
+    @Override
+    public void activateTask(@NonNull Task task) {
+        mAppExecutors.diskIO().execute(() -> mTasksDao.updateCompleted(task.getId(), false));
     }
 }

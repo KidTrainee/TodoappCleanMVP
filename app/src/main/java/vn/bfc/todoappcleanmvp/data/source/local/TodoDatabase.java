@@ -5,12 +5,14 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import vn.bfc.todoappcleanmvp.tasks.domain.model.Task;
+
 @Database(entities = {Task.class}, version = 1)
 public abstract class TodoDatabase extends RoomDatabase {
 
     private static TodoDatabase instance;
 
-    public abstract  TasksDao tasksDao();
+    public abstract  TasksDao taskDao();
 
     private static final Object sLock = new Object();
 
