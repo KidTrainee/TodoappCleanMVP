@@ -36,9 +36,6 @@ public class Task {
 
     /**
      * Use this constructor to create a new active Task.
-     *
-     * @param title       title of the task
-     * @param description description of the task
      */
     @Ignore
     public Task(@Nullable String title, @Nullable String description) {
@@ -46,12 +43,8 @@ public class Task {
     }
 
     /**
-     * Use this constructor to create an active Task if the Task already has an id (copy of another
-     * Task).
-     *
-     * @param title       title of the task
-     * @param description description of the task
-     * @param id          id of the task
+     * Use this constructor to create an active Task if the Task already has an id
+     * (copy of another Task).
      */
     @Ignore
     public Task(@Nullable String title, @Nullable String description, @NonNull String id) {
@@ -60,10 +53,6 @@ public class Task {
 
     /**
      * Use this constructor to create a new completed Task.
-     *
-     * @param title       title of the task
-     * @param description description of the task
-     * @param completed   true if the task is completed, false if it's active
      */
     @Ignore
     public Task(@Nullable String title, @Nullable String description, boolean completed) {
@@ -71,8 +60,8 @@ public class Task {
     }
 
     /**
-     * Use this constructor to specify a completed Task if the Task already has an id (copy of
-     * another Task).
+     * Use this constructor to specify a completed Task if the Task already
+     * has an id (copy of another Task).
      *
      * @param title       title of the task
      * @param description description of the task
