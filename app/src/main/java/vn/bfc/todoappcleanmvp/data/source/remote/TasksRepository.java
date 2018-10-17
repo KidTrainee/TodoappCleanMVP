@@ -159,4 +159,8 @@ public class TasksRepository implements TasksDataSource {
             mTasksLocalDataSource.saveTask(task);
         }
     }
+
+    public void refreshTasks() {
+        mCachedDataSource.setDirty(true);
+    }
 }

@@ -44,7 +44,7 @@ public abstract class UseCase<Q extends UseCase.RequestValues, P extends UseCase
     public interface ResponseValue {
     }
 
-    public interface UseCaseCallback<R> {
+    public interface UseCaseCallback<R extends UseCase.ResponseValue> {
         void onSuccess(R response);
         void onError();
     }

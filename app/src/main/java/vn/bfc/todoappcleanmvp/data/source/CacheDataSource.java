@@ -72,4 +72,8 @@ public class CacheDataSource {
             return mCachedTasks.get(id);
         }
     }
+
+    public void setDirty(boolean isDirty) {
+        mCacheIsDirty = isDirty;
+    }
 }
