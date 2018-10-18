@@ -2,7 +2,11 @@ package vn.bfc.todoappcleanmvp.tasks;
 
 import android.support.annotation.NonNull;
 
+import java.util.List;
+
+import vn.bfc.todoappcleanmvp.UseCase;
 import vn.bfc.todoappcleanmvp.UseCaseHandler;
+import vn.bfc.todoappcleanmvp.tasks.domain.model.Task;
 import vn.bfc.todoappcleanmvp.tasks.domain.usecase.UCActivateTask;
 import vn.bfc.todoappcleanmvp.tasks.domain.usecase.UCClearCompleteTasks;
 import vn.bfc.todoappcleanmvp.tasks.domain.usecase.UCCompleteTasks;
@@ -59,7 +63,46 @@ public class TasksPresenter implements TasksContract.Presenter {
             mTasksView.setLoadingIndicator(true);
         }
 
-        UCGetTasks.RequestValues requestValues = new UCGetTasks.RequestValues(forceUpdate, mCurrentFiltering);
+        UCGetTasks.RequestValues requestValues = new UCGetTasks.RequestValues(mCurrentFiltering, forceUpdate);
+
+        mUseCaseHandler.execute(mUcGetTasks, requestValues,
+                new UseCase.UseCaseCallback<UCGetTasks.ResponseValue>() {
+                    @Override
+                    public void onSuccess(UCGetTasks.ResponseValue response) {
+                        List<Task> tasks = response.getTasks();
+                        // the view may not be able to handle UI updates anymore
+                        if (!mTasksView.isActive()) {
+                            return;
+                        }
+
+                        if (showLoadingUI) {
+                            mTasksView.setLoadingIndicator(false);
+                        }
+
+                        processTasks(tasks);
+                    }
+
+                    @Override
+                    public void onError() {
+                        // the view may not be able to handle UI updates anymore
+                        if (!mTasksView.isActive()) {
+                            return;
+                        }
+                        mTasksView.showLoadingTasksError();
+                    }
+                });
+    }
+
+    private void processTasks(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            // Show a message indicating there are no tasks for that filter type.
+            processEmptyTasks();
+        } else {
+            // Show the list of tasks
+            mTasksView.showTasks(tasks);
+            // set the filter label's text.
+            showFilterLabel();
+        }
     }
 
 }

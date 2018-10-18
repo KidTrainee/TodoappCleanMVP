@@ -7,6 +7,8 @@ public interface TasksContract {
     interface View extends BaseView<Presenter> {
 
         void setLoadingIndicator(boolean active);
+
+        boolean isActive();
     }
     interface Presenter extends BasePresenter {
 
