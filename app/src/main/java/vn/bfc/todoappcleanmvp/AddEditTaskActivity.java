@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 public class AddEditTaskActivity extends AppCompatActivity {
 
+    public static final String ARGUMENT_EDIT_TASK_ID = "TASK_ID";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -8,10 +8,13 @@ import vn.bfc.todoappcleanmvp.data.source.local.TasksLocalDataSource;
 import vn.bfc.todoappcleanmvp.data.source.local.TodoDatabase;
 import vn.bfc.todoappcleanmvp.data.source.remote.TasksDataSource;
 import vn.bfc.todoappcleanmvp.data.source.remote.TasksRepository;
-import vn.bfc.todoappcleanmvp.tasks.domain.usecase.UCClearCompleteTasks;
-import vn.bfc.todoappcleanmvp.tasks.domain.usecase.UCCompleteTasks;
-import vn.bfc.todoappcleanmvp.tasks.domain.usecase.UCGetTasks;
-import vn.bfc.todoappcleanmvp.tasks.domain.usecase.UCActivateTask;
+import vn.bfc.todoappcleanmvp.domain.filter.FilterFactory;
+import vn.bfc.todoappcleanmvp.domain.usecase.UCClearCompleteTasks;
+import vn.bfc.todoappcleanmvp.domain.usecase.UCCompleteTask;
+import vn.bfc.todoappcleanmvp.domain.usecase.UCDeleteTask;
+import vn.bfc.todoappcleanmvp.domain.usecase.UCGetTask;
+import vn.bfc.todoappcleanmvp.domain.usecase.UCGetTasks;
+import vn.bfc.todoappcleanmvp.domain.usecase.UCActivateTask;
 import vn.bfc.todoappcleanmvp.util.AppExecutors;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -36,18 +39,27 @@ public class Injection {
         return new UCActivateTask(Injection.provideTasksRepository(context));
     }
 
-    public static Object provideUseCaseHandler() {
-        return null;
+    public static UseCaseHandler provideUseCaseHandler() {
+        return UseCaseHandler.getInstance();
     }
 
-    public static UCGetTasks provideUCGetTasks(Context ctx) {
-
-        return null;
+    public static UCGetTasks provideUCGetTasks(@NonNull Context ctx) {
+        return new UCGetTasks(Injection.provideTasksRepository(ctx), new FilterFactory());
     }
 
-    public static UCCompleteTasks provideUCCompleteTasks(Context ctx) {
+    public static UCCompleteTask provideUCCompleteTask(@NonNull Context ctx) {
+        return new UCCompleteTask(Injection.provideTasksRepository(ctx));
     }
 
-    public static UCClearCompleteTasks provideUCClearCompleteTasks(Context ctx) {
+    public static UCClearCompleteTasks provideUCClearCompleteTasks(@NonNull Context ctx) {
+        return new UCClearCompleteTasks(Injection.provideTasksRepository(ctx));
+    }
+
+    public static UCDeleteTask provideUCDeleteTask(@NonNull Context ctx) {
+        return new UCDeleteTask(Injection.provideTasksRepository(ctx));
+    }
+
+    public static UCGetTask provideUCGetTask(@NonNull Context ctx) {
+        return new UCGetTask(Injection.provideTasksRepository(ctx));
     }
 }

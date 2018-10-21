@@ -1,10 +1,10 @@
-package vn.bfc.todoappcleanmvp.data.source.remote;
+package vn.bfc.todoappcleanmvp.data.source;
 
 import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import vn.bfc.todoappcleanmvp.tasks.domain.model.Task;
+import vn.bfc.todoappcleanmvp.domain.model.Task;
 
 public interface TasksDataSource {
 
@@ -18,13 +18,22 @@ public interface TasksDataSource {
 
     void activateTask(Task task);
 
+    void completeTask(String completedTask);
+
+    void completeTask(Task task);
+
+    void clearCompletedTasks();
+
+    void deleteTask(String taskId);
+
+    void getTask(String taskId, GetTaskCallback callback);
+
     interface LoadTasksCallback {
 
         void onTasksLoaded(List<Task> tasks);
 
         void onDataNotAvailable();
     }
-
 
     interface GetTaskCallback {
 

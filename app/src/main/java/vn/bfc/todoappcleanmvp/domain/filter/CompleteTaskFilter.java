@@ -1,9 +1,9 @@
-package vn.bfc.todoappcleanmvp.tasks.domain.filter;
+package vn.bfc.todoappcleanmvp.domain.filter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.bfc.todoappcleanmvp.tasks.domain.model.Task;
+import vn.bfc.todoappcleanmvp.domain.model.Task;
 
 public class CompleteTaskFilter implements TaskFilter {
     @Override

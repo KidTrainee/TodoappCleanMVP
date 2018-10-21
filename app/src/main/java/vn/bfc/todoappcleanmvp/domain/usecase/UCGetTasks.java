@@ -1,16 +1,16 @@
-package vn.bfc.todoappcleanmvp.tasks.domain.usecase;
+package vn.bfc.todoappcleanmvp.domain.usecase;
 
 import android.support.annotation.NonNull;
 
 import java.util.List;
 
 import vn.bfc.todoappcleanmvp.UseCase;
-import vn.bfc.todoappcleanmvp.data.source.remote.TasksDataSource;
-import vn.bfc.todoappcleanmvp.data.source.remote.TasksRepository;
+import vn.bfc.todoappcleanmvp.data.source.TasksDataSource;
+import vn.bfc.todoappcleanmvp.data.source.TasksRepository;
 import vn.bfc.todoappcleanmvp.tasks.TasksFilterType;
-import vn.bfc.todoappcleanmvp.tasks.domain.filter.FilterFactory;
-import vn.bfc.todoappcleanmvp.tasks.domain.filter.TaskFilter;
-import vn.bfc.todoappcleanmvp.tasks.domain.model.Task;
+import vn.bfc.todoappcleanmvp.domain.filter.FilterFactory;
+import vn.bfc.todoappcleanmvp.domain.filter.TaskFilter;
+import vn.bfc.todoappcleanmvp.domain.model.Task;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

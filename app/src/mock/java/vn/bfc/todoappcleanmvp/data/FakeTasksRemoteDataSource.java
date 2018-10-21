@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import vn.bfc.todoappcleanmvp.data.source.remote.TasksDataSource;
-import vn.bfc.todoappcleanmvp.tasks.domain.model.Task;
+import vn.bfc.todoappcleanmvp.domain.model.Task;
 
 public class FakeTasksRemoteDataSource implements TasksDataSource {
 

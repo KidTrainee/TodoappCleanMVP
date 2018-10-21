@@ -4,8 +4,8 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import vn.bfc.todoappcleanmvp.data.source.remote.TasksDataSource;
-import vn.bfc.todoappcleanmvp.tasks.domain.model.Task;
+import vn.bfc.todoappcleanmvp.data.source.TasksDataSource;
+import vn.bfc.todoappcleanmvp.domain.model.Task;
 import vn.bfc.todoappcleanmvp.util.AppExecutors;
 
 import static com.google.common.base.Preconditions.checkNotNull;

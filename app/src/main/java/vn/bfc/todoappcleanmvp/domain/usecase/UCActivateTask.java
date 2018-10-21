@@ -1,9 +1,9 @@
-package vn.bfc.todoappcleanmvp.tasks.domain.usecase;
+package vn.bfc.todoappcleanmvp.domain.usecase;
 
 import android.support.annotation.NonNull;
 
 import vn.bfc.todoappcleanmvp.UseCase;
-import vn.bfc.todoappcleanmvp.data.source.remote.TasksRepository;
+import vn.bfc.todoappcleanmvp.data.source.TasksRepository;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

@@ -1,4 +1,4 @@
-package vn.bfc.todoappcleanmvp.tasks.domain.model;
+package vn.bfc.todoappcleanmvp.domain.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

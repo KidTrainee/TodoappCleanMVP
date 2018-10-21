@@ -1,11 +1,10 @@
-package vn.bfc.todoappcleanmvp.data.source.remote;
+package vn.bfc.todoappcleanmvp.data.source;
 
 import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import vn.bfc.todoappcleanmvp.data.source.CacheDataSource;
-import vn.bfc.todoappcleanmvp.tasks.domain.model.Task;
+import vn.bfc.todoappcleanmvp.domain.model.Task;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -163,4 +162,38 @@ public class TasksRepository implements TasksDataSource {
     public void refreshTasks() {
         mCachedDataSource.setDirty(true);
     }
+
+    @Override
+    public void completeTask(Task task) {
+        checkNotNull(task);
+        mTasksRemoteDataSource.completeTask(task);
+        mTasksLocalDataSource.completeTask(task);
+        Task completedTask = new Task(task.getTitle(), task.getDescription(), task.getId());
+        mCachedDataSource.saveTask(completedTask);
+    }
+
+    @Override
+    public void completeTask(String taskId) {
+        checkNotNull(taskId);
+        completeTask(getTasksWithId(taskId));
+    }
+
+    @Override
+    public void clearCompletedTasks() {
+        mTasksRemoteDataSource.clearCompletedTasks();
+        mTasksLocalDataSource.clearCompletedTasks();
+
+        mCachedDataSource.clearCompleteTasks();
+    }
+
+    @Override
+    public void deleteTask(String taskId) {
+
+    }
+
+    @Override
+    public void getTask(String taskId, GetTaskCallback callback) {
+
+    }
+
 }

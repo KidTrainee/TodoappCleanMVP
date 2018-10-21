@@ -1,13 +1,12 @@
 package vn.bfc.todoappcleanmvp.data.source;
 
-import android.support.annotation.NonNull;
-
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import vn.bfc.todoappcleanmvp.tasks.domain.model.Task;
+import vn.bfc.todoappcleanmvp.domain.model.Task;
 
 public class CacheDataSource {
 
@@ -75,5 +74,23 @@ public class CacheDataSource {
 
     public void setDirty(boolean isDirty) {
         mCacheIsDirty = isDirty;
+    }
+
+
+    public void clearCompleteTasks() {
+        getCacheTasks();
+        Iterator<Map.Entry<String, Task>> it = mCachedTasks.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, Task> entry = it.next();
+            if (entry.getValue().isCompleted()) {
+                it.remove();
+            }
+        }
+    }
+
+    private void getCacheTasks() {
+        if (mCachedTasks == null) {
+            mCachedTasks = new LinkedHashMap<>();
+        }
     }
 }

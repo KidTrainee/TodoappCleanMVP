@@ -1,4 +1,4 @@
-package vn.bfc.todoappcleanmvp.tasks.domain.filter;
+package vn.bfc.todoappcleanmvp.domain.filter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ public class FilterFactory {
 
 
     public FilterFactory() {
-        mFilters.put(TasksFilterType.ALL_TASKS, new FilterAllTaskFilter());
+        mFilters.put(TasksFilterType.ALL_TASKS, new AllTaskFilter());
         mFilters.put(TasksFilterType.ACTIVE_TASKS, new ActiveTaskFilter());
         mFilters.put(TasksFilterType.COMPLETED_TASKS, new CompleteTaskFilter());
     }
